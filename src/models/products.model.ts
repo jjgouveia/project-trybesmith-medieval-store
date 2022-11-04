@@ -1,5 +1,5 @@
 import { ResultSetHeader, RowDataPacket } from "mysql2";
-import IProducts from "../interfaces/products.interface";
+import IProducts from "../interfaces/IProducts";
 import connection from "./connection";
 
 
