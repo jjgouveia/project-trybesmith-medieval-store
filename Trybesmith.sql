@@ -24,7 +24,7 @@ CREATE TABLE Trybesmith.Products (
 );
 
 INSERT INTO
-  Trybesmith.Users (username, classe, level, password)
+  Trybesmith.Users (username, classe, level, password)''
 VALUES
   ("reigal", "Guerreiro", 10, "1dragaonoceu");
 
