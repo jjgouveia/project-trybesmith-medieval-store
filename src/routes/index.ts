@@ -3,7 +3,7 @@ import productRouter from './products.routes';
 import userRouter from './users.routes';
 
 exports = {
-    orderRouter,
-    productRouter,
-    userRouter
-}
+  orderRouter,
+  productRouter,
+  userRouter,
+};

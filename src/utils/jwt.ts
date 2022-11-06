@@ -1,8 +1,9 @@
+import { sign, verify } from 'jsonwebtoken';
+
 require('dotenv/config');
-const jwt = require('jsonwebtoken');
 
 export const createToken = (data: object) => {
-  const token = jwt.sign({ data }, process.env.JWT_SECRET, {
+  const token = sign({ data }, process.env.JWT_SECRET as string, {
     expiresIn: '1d',
     algorithm: 'HS256',
   });
@@ -12,11 +13,10 @@ export const createToken = (data: object) => {
 
 export const validateToken = (token: string) => {
   try {
-    const { data } = jwt.verify(token, process.env.JWT_SECRET);
+    const data = verify(token, process.env.JWT_SECRET as string);
     console.log(data);
     return { type: null, message: data };
   } catch (error) {
     return { type: 'INVALID_TOKEN', message: 'Expired or invalid token' };
   }
 };
-
