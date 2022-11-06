@@ -1,10 +1,20 @@
-import loginSchema from './schemas';
+import { loginSchema, newProductSchema } from './schemas';
 
-const validateLogin = (login: object) => {
+export const validateLogin = (login: object) => {
   const { error } = loginSchema.validate(login);
   if (error) return { type: 400, message: error.message };
   
   return { type: null, message: '' };
 };
 
-export default validateLogin;
+export const validateNewProduct = (product: object) => {
+  const { error } = newProductSchema.validate(product);
+
+  if (error) {
+    return { 
+      type: error.message.includes('required') ? 400 : 422, message: error.message,
+    };
+  }
+  
+  return { type: null, message: '' };
+};

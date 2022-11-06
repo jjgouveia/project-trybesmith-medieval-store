@@ -1,13 +1,8 @@
 import { ILogin } from '../interfaces/ILogin';
+import { IResponse } from '../interfaces/IResponse';
 import LoginModel from '../models/login.model';
 import { createToken } from '../utils/jwt';
-import validateLogin from './validations/validateInputs';
-
-interface Iresponse {
-  type: number;
-  token?: string;
-  message?: string;
-}
+import { validateLogin } from './validations/validateInputs';
 
 export default class LoginService {
   public loginModel = new LoginModel();
@@ -18,7 +13,7 @@ export default class LoginService {
     return hasUser;
   } 
 
-  public async create(login: ILogin): Promise<Iresponse> {
+  public async create(login: ILogin): Promise<IResponse> {
     const { username, password } = login;
     const error = validateLogin(login);
     if (error.type) return { type: error.type, message: error.message };

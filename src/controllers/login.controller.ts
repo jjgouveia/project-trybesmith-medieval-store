@@ -8,8 +8,7 @@ export default class LoginController {
     const login = req.body;
     const { type, token, message } = await this.serviceLogin.create(login);
 
-    if (token) return res.status(type).json({ token });
-    
+    if (token) res.status(type).json({ token });
     res.status(type).json({ message });
   }
 }
