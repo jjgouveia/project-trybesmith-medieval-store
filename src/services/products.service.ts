@@ -1,5 +1,5 @@
 import IProducts from '../interfaces/IProduct';
-import { ProductModel } from '../models/products.model';
+import ProductModel from '../models/products.model';
 
 export default class ProductService {
   public product = new ProductModel();
@@ -11,7 +11,7 @@ export default class ProductService {
   }
 
   public async create(productInfo: IProducts): Promise<IProducts> {
-    const data = this.product.create(productInfo);
+    const data = await this.product.create(productInfo);
 
     return data;
   }
