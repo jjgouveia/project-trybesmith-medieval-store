@@ -1,4 +1,4 @@
-import { loginSchema, newProductSchema, newUserSchema } from './schemas';
+import { loginSchema, newOrderSchema, newProductSchema, newUserSchema } from './schemas';
 
 export const validateLogin = (login: object) => {
   const { error } = loginSchema.validate(login);
@@ -32,7 +32,7 @@ export const validateNewUser = (user: object) => {
 };
 
 export const validateNewOrder = (order: object) => {
-  const { error } = newUserSchema.validate(order);
+  const { error } = newOrderSchema.validate(order);
     
   if (error) {
     return { 

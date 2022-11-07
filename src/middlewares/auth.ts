@@ -13,6 +13,7 @@ const authLogin = (req: Request, res:Response, next: NextFunction) => {
     
     if (decoded.type) return res.status(401).json({ message: 'Invalid token' });
     req.body.user = decoded;
+    
     next();
   } catch (err) {
     res.status(401).json({ message: 'Invalid token' });

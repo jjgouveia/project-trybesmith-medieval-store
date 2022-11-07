@@ -17,7 +17,7 @@ export const newUserSchema = Joi.object({
   password: Joi.string().min(8).required(),
 });
 
-export const newOrderSchema: Joi.Schema = Joi.object({
+export const newOrderSchema = Joi.object({
   productsIds: Joi.array().min(1).items(Joi.number()).required()
     .messages({
       'array.min': '"productsIds" must include only numbers',

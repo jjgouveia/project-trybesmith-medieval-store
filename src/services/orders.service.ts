@@ -1,4 +1,5 @@
 import { IOrder } from '../interfaces/IOrder';
+import { IResponse } from '../interfaces/IResponse';
 import OrderModel from '../models/orders.model';
 import ProductModel from '../models/products.model';
 import { validateNewOrder } from './validations/validateInputs';
@@ -14,8 +15,8 @@ export default class OrdersService {
     return result;
   }
   
-  async create(userId: number, productsIds: number[]): Promise<IOrder | object> {
-    const error = validateNewOrder(productsIds);
+  async create(userId: number, productsIds: number[]): Promise<IResponse> {
+    const error = validateNewOrder({ productsIds });
     if (error.type) return { type: error.type, message: error.message };
 
     const orderId: number = await this.orderModel.create(userId);
@@ -24,6 +25,6 @@ export default class OrdersService {
     });
     await Promise.all(insertSaleId);
 
-    return { userId, productsIds };
+    return { type: 201, message: { userId, productsIds }, success: true };
   }
 }
