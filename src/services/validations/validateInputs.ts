@@ -1,4 +1,4 @@
-import { loginSchema, newProductSchema } from './schemas';
+import { loginSchema, newProductSchema, newUserSchema } from './schemas';
 
 export const validateLogin = (login: object) => {
   const { error } = loginSchema.validate(login);
@@ -16,5 +16,29 @@ export const validateNewProduct = (product: object) => {
     };
   }
   
+  return { type: null, message: '' };
+};
+
+export const validateNewUser = (user: object) => {
+  const { error } = newUserSchema.validate(user);
+  
+  if (error) {
+    return { 
+      type: error.message.includes('required') ? 400 : 422, message: error.message,
+    };
+  }
+    
+  return { type: null, message: '' };
+};
+
+export const validateNewOrder = (order: object) => {
+  const { error } = newUserSchema.validate(order);
+    
+  if (error) {
+    return { 
+      type: error.message.includes('required') ? 400 : 422, message: error.message,
+    };
+  }
+      
   return { type: null, message: '' };
 };

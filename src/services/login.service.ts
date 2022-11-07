@@ -19,10 +19,13 @@ export default class LoginService {
     if (error.type) return { type: error.type, message: error.message };
 
     const userValidation = await this.loginModel.findOne(login);
-    
     if (!userValidation?.length) return { type: 401, message: 'Username or password invalid' };
     
-    const token = createToken({ username, password });
+    const data = { ...userValidation };
+
+    const { id } = data[0];
+    
+    const token = createToken({ username, password, id });
 
     return { type: 200, token };
   }

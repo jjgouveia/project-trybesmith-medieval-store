@@ -9,4 +9,11 @@ export default class OrderController {
 
     res.status(200).json(result);
   }
+
+  public async create(req: Request, res: Response): Promise<void> {
+    const { productsIds, user } = req.body;
+    const userId = user.id;
+    const newOrder = await this.orderService.create(userId, productsIds);
+    res.status(201).json(newOrder);
+  }
 }

@@ -14,9 +14,8 @@ export const createToken = (data: object) => {
 export const validateToken = (token: string) => {
   try {
     const data = verify(token, process.env.JWT_SECRET as string);
-    console.log(data);
-    return { type: null, message: data };
+    return { message: data };
   } catch (error) {
-    return { type: 'INVALID_TOKEN', message: 'Expired or invalid token' };
+    return { type: 401, message: 'Invalid token' };
   }
 };

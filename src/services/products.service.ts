@@ -18,6 +18,6 @@ export default class ProductService {
 
     const data = await this.product.create(productInfo);
 
-    return { type: 200, message: data, token: ' ' };
+    return { type: 201, message: data, success: true };
   }
 }
